@@ -29,6 +29,13 @@
                                 <td>{{ $post->content }}</td>
                                 <td><img src="{{ $post->image }}" alt="{{ $post->image }}"></td>
                                 <td><a href="{{ route('admin.posts.show', $post->id) }}">Dettaglio</a></td>
+                                <td>
+                                    <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit">Elmina</button>
+                                    </form>
+                                </td>
                                 <td class="d-flex align-items-center justify-content-center">
                                     <i class="fa-solid fa-pen-to-square mr-3"></i>
                                     <i class="fa-solid fa-trash"></i>
