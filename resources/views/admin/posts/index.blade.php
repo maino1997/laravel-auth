@@ -8,7 +8,9 @@
                     <h1>I miei post:</h1>
                 </header>
                 <div class="add-posts">
-                    <i class="fa-solid fa-plus"></i>
+                    <i class="fa-solid fa-plus">
+                        <a href="{{ route('admin.posts.create') }}">Crea un post</a>
+                    </i>
                 </div>
                 <table class="table">
                     <thead>
@@ -25,7 +27,8 @@
                                 <th scope="row">{{ $post->id }}</th>
                                 <td>{{ $post->title }}</td>
                                 <td>{{ $post->content }}</td>
-                                <td>{{ $post->image }}</td>
+                                <td><img src="{{ $post->image }}" alt="{{ $post->image }}"></td>
+                                <td><a href="{{ route('admin.posts.show', $post->id) }}">Dettaglio</a></td>
                                 <td class="d-flex align-items-center justify-content-center">
                                     <i class="fa-solid fa-pen-to-square mr-3"></i>
                                     <i class="fa-solid fa-trash"></i>

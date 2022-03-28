@@ -28,29 +28,43 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     *  @param  Post $post
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'unique:posts', 'string', 'min:3', 'max:50'],
+            'image' => ['string', 'min:10'],
+            'content' => ['required', 'string', 'min:10']
+        ]);
+
+        $data = $request->all();
+
+        $post = new Post();
+
+        $post->fill($data);
+        $post->save();
+
+        return redirect()->route('admin.posts.show', ['post' => $post->id]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Post $post
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        //
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
