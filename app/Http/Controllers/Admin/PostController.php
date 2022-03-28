@@ -113,6 +113,6 @@ class PostController extends Controller
     {
         $post->delete();
 
-        return redirect()->route('admin.posts.index');
+        return redirect()->route('admin.posts.index')->with('message', "$post->title eliminato con successo")->with('type', "success");
     }
 }
