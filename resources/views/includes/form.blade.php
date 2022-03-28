@@ -29,8 +29,8 @@
     </div>
     <div class="form-group">
         <label for="exampleInputPassword1">URL dell'immagine</label>
-        <input type="text" class="form-control  @error('image') is-invalid @enderror" id="exampleInputPassword1"
-            name="image" value="{{ old('image', $post->image) }}">
+        <input type="text" class="form-control  @error('image') is-invalid @enderror" id="image-input" name="image"
+            value="{{ old('image', $post->image) }}">
         @error('image')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -47,7 +47,14 @@
             </div>
         @enderror
     </div>
+    <div class="form-group">
+        <img src="{{ $comic->thumb ?? 'http://www.asdalcione.it/wp-content/uploads/2016/08/jk-placeholder-image-1.jpg' }}"
+            alt="placeholder" id="image-src" width="200" class="img-fluid">
+    </div>
     <button type="submit" class="btn btn-primary">Crea</button>
     </form>
 
 </div>
+
+<script src="{{ asset('js/image-preview.js') }}" defer>
+</script>
