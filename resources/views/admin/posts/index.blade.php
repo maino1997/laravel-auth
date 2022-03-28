@@ -31,7 +31,8 @@
                                 <td><a href="{{ route('admin.posts.show', $post->id) }}">Dettaglio</a></td>
                                 <td><a href="{{ route('admin.posts.edit', $post->id) }}">Modifica</a></td>
                                 <td>
-                                    <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST">
+                                    <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST"
+                                        class="delete-form">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit">Elmina</button>
@@ -54,4 +55,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script src=" {{ config('js\confirmation-delete.js') }}"></script>
 @endsection

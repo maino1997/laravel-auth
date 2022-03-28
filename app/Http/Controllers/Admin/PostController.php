@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Validation\Rule;
+
 
 
 class PostController extends Controller
@@ -28,7 +30,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $post = new Post();
+        return view('admin.posts.create', compact('post'));
     }
 
     /**
@@ -88,7 +91,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $request->validate([
-            'title' => ['required', 'unique:posts', 'string', 'min:3', 'max:50'],
+            'title' => ['required', Rule::unique('posts')->ignore($post->id), 'string', 'min:3', 'max:50'],
             'image' => ['string', 'min:10'],
             'content' => ['required', 'string', 'min:10']
         ]);
