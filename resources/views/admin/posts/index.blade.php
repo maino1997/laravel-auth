@@ -29,6 +29,7 @@
                                 <td>{{ $post->content }}</td>
                                 <td><img src="{{ $post->image }}" alt="{{ $post->image }}"></td>
                                 <td><a href="{{ route('admin.posts.show', $post->id) }}">Dettaglio</a></td>
+                                <td><a href="{{ route('admin.posts.edit', $post->id) }}">Modifica</a></td>
                                 <td>
                                     <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST">
                                         @method('DELETE')
