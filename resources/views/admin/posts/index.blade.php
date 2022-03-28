@@ -7,10 +7,8 @@
                 <header>
                     <h1>I miei post:</h1>
                 </header>
-                <div class="add-posts">
-                    <i class="fa-solid fa-plus">
-                        <a href="{{ route('admin.posts.create') }}">Crea un post</a>
-                    </i>
+                <div class="d-flex justify-content-end">
+                    <a class="btn btn-primary" href="{{ route('admin.posts.create') }}">Crea un post</a>
                 </div>
                 <table class="table">
                     <thead>
@@ -28,14 +26,16 @@
                                 <td>{{ $post->title }}</td>
                                 <td>{{ $post->content }}</td>
                                 <td><img src="{{ $post->image }}" alt="{{ $post->image }}"></td>
-                                <td><a href="{{ route('admin.posts.show', $post->id) }}">Dettaglio</a></td>
-                                <td><a href="{{ route('admin.posts.edit', $post->id) }}">Modifica</a></td>
+                                <td><a class="btn btn-primary"
+                                        href="{{ route('admin.posts.show', $post->id) }}">Dettaglio</a></td>
+                                <td><a class="btn btn-warning"
+                                        href="{{ route('admin.posts.edit', $post->id) }}">Modifica</a></td>
                                 <td>
                                     <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST"
                                         class="delete-form">
                                         @method('DELETE')
                                         @csrf
-                                        <button type="submit">Elmina</button>
+                                        <button class="btn btn-danger" type="submit">Elmina</button>
                                     </form>
                                 </td>
                                 <td class="d-flex align-items-center justify-content-center">
@@ -58,5 +58,6 @@
 @endsection
 
 @section('scripts')
-    <script src=" {{ config('js\confirmation-delete.js') }}"></script>
+    <script src=" {{ asset('js\confirmation-delete.js') }}" defer></script>
+    <script src=" {{ asset('js\image-preview.js') }}" defer></script>
 @endsection

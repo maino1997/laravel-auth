@@ -8,8 +8,8 @@
                 <img src="{{ $post->image }}" alt="image">
                 <p>{{ $post->content }}</p>
             </div>
-            <a href="{{ route('admin.posts.edit', $post->id) }}">Modifica</a>
-            <a href="{{ route('admin.posts.index') }}">Indietro</a>
+            <a class="btn btn-warning" href="{{ route('admin.posts.edit', $post->id) }}">Modifica</a>
+            <a class="btn btn-secondary" href="{{ route('admin.posts.index') }}">Indietro</a>
         </div>
     </div>
 @endsection
