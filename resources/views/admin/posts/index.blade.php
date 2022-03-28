@@ -14,9 +14,10 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Creation date</th>
-                            <th scope="col">Actions</th>
+                            <th scope="col">Titolo</th>
+                            <th scope="col">Contenuto</th>
+                            <th scope="col">Immagine</th>
+                            <th scope="col">Azioni</th>
                         </tr>
                     </thead>
                     <tbody>
