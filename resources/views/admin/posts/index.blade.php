@@ -18,6 +18,7 @@
                             <th scope="col">Titolo</th>
                             <th scope="col">Contenuto</th>
                             <th scope="col">Immagine</th>
+                            <th scope="col">Stato</th>
                             <th scope="col">Azioni</th>
                         </tr>
                     </thead>
@@ -28,6 +29,11 @@
                                 <td>{{ $post->title }}</td>
                                 <td>{{ $post->content }}</td>
                                 <td><img src="{{ $post->image }}" alt="{{ $post->image }}"></td>
+                                <td>
+                                    <span
+                                        class="badge badge-pill badge-{{ $post->is_published ? 'success' : 'danger' }}">Stato</span>
+
+                                </td>
                                 <td><a class="btn btn-primary"
                                         href="{{ route('admin.posts.show', $post->id) }}">Dettaglio</a></td>
                                 <td><a class="btn btn-warning"
@@ -47,7 +53,8 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5">
+                                <td colspan="
+                                                                        5">
                                     <h3>Non ci sono post</h3>
                                 </td>
                             </tr>

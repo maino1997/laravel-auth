@@ -46,13 +46,17 @@ class PostController extends Controller
         $request->validate([
             'title' => ['required', 'unique:posts', 'string', 'min:3', 'max:50'],
             'image' => ['string', 'min:10'],
-            'content' => ['required', 'string', 'min:10']
+            'content' => ['required', 'string', 'min:10'],
         ]);
 
         $data = $request->all();
 
         $post = new Post();
-
+        if (array_key_exists('is_published', $data)) {
+            $post->is_published = 1;
+        } else {
+            $post->is_published = 0;
+        }
         $post->fill($data);
         $post->save();
 
@@ -90,14 +94,17 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        dd($request);
         $request->validate([
             'title' => ['required', Rule::unique('posts')->ignore($post->id), 'string', 'min:3', 'max:50'],
             'image' => ['string', 'min:10'],
-            'content' => ['required', 'string', 'min:10']
+            'content' => ['required', 'string', 'min:10'],
         ]);
 
         $data = $request->all();
-
+        if (array_key_exists('is_published', $data)) {
+            $post->is_published = true;
+        }
         $post->update($data);
 
         return redirect()->route('admin.posts.show', ['post' => $post->id]);
