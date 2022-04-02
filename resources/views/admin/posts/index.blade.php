@@ -30,14 +30,15 @@
                                 <td>{{ $post->content }}</td>
                                 <td><img src="{{ $post->image }}" alt="{{ $post->image }}"></td>
                                 <td>
+
                                     <form action="{{ route('admin.posts.toggle', $post->id) }}" method="POST">
                                         @method(
                                         'PATCH'
                                         )
                                         @csrf
-                                        <button type="submit">
+                                        <button type="submit" class="btn btn-outline">
                                             <span
-                                                class="fa-solid {{ $post->is_published ? 'fa-toggle-on' : 'fa-toggle-off' }}">{{ $post->is_published ? 'pubblicato' : 'toggle-off' }}</span>
+                                                class="fa-solid text-{{ $post->is_published ? 'success' : 'danger' }} {{ $post->is_published ? 'fa-toggle-on' : 'fa-toggle-off' }}">{{ $post->is_published ? 'pubblicato' : 'non pubblicato' }}</span>
                                         </button>
                                     </form>
 
@@ -61,8 +62,9 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="
-                                                                                                        5">
+                                <td
+                                    colspan="
+                                                                                                                                    5">
                                     <h3>Non ci sono post</h3>
                                 </td>
                             </tr>
