@@ -94,7 +94,6 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        dd($request);
         $request->validate([
             'title' => ['required', Rule::unique('posts')->ignore($post->id), 'string', 'min:3', 'max:50'],
             'image' => ['string', 'min:10'],
@@ -121,5 +120,11 @@ class PostController extends Controller
         $post->delete();
 
         return redirect()->route('admin.posts.index')->with('message', "$post->title eliminato con successo")->with('type', "success");
+    }
+    public function toggle(Post $post)
+    {
+        $post->is_published = !$post->is_published;
+        $post->save();
+        return redirect()->route('admin.posts.index')->with('message', "$post->title pubblicato con successo")->with('type', "success");
     }
 }

@@ -30,8 +30,16 @@
                                 <td>{{ $post->content }}</td>
                                 <td><img src="{{ $post->image }}" alt="{{ $post->image }}"></td>
                                 <td>
-                                    <span
-                                        class="badge badge-pill badge-{{ $post->is_published ? 'success' : 'danger' }}">Stato</span>
+                                    <form action="{{ route('admin.posts.toggle', $post->id) }}" method="POST">
+                                        @method(
+                                        'PATCH'
+                                        )
+                                        @csrf
+                                        <button type="submit">
+                                            <span
+                                                class="fa-solid {{ $post->is_published ? 'fa-toggle-on' : 'fa-toggle-off' }}">{{ $post->is_published ? 'pubblicato' : 'toggle-off' }}</span>
+                                        </button>
+                                    </form>
 
                                 </td>
                                 <td><a class="btn btn-primary"
@@ -54,7 +62,7 @@
                         @empty
                             <tr>
                                 <td colspan="
-                                                                        5">
+                                                                                                        5">
                                     <h3>Non ci sono post</h3>
                                 </td>
                             </tr>
