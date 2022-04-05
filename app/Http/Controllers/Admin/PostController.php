@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 
 
 
@@ -57,6 +58,8 @@ class PostController extends Controller
         } else {
             $post->is_published = 0;
         }
+        $post->slug = Str::slug($post->title, '-');
+
         $post->fill($data);
         $post->save();
 
@@ -104,6 +107,8 @@ class PostController extends Controller
         if (array_key_exists('is_published', $data)) {
             $post->is_published = true;
         }
+        $post->slug = Str::slug($post->title, '-');
+
         $post->update($data);
 
         return redirect()->route('admin.posts.show', ['post' => $post->id]);
