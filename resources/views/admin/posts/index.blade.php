@@ -4,7 +4,7 @@
     @include('includes.alert')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col">
                 <header>
                     <h1>I miei post:</h1>
                 </header>
@@ -64,7 +64,7 @@
                             <tr>
                                 <td
                                     colspan="
-                                                                                                                                    5">
+                                                                                                                                            5">
                                     <h3>Non ci sono post</h3>
                                 </td>
                             </tr>
@@ -73,6 +73,9 @@
                 </table>
             </div>
         </div>
+        @if ($posts->hasPages())
+            {{ $posts->links() }}
+        @endif
     </div>
 @endsection
 
